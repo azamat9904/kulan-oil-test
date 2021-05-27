@@ -10,12 +10,14 @@
       <div class="collapse navbar-collapse" id="navbarColor02">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home
-              <span class="visually-hidden">(current)</span>
-            </a>
+            <router-link class="nav-link" :to="{name:'posts'}">
+              Home
+            </router-link>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"></a>
+            <router-link class="nav-link" :to="{name:'form'}">
+              Form
+            </router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#"></a>
