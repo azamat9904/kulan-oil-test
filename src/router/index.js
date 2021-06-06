@@ -1,33 +1,32 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from '../layout/main'
+import { postRoutes } from "@/pages/post/postRoutes";
+import { loadPage } from "@/helpers/routerUtils";
 
 Vue.use(Router)
 
 export const constantRouterMap = [
     {
         path: '/',
-        component: Layout,
         name: 'Main',
-        children: [{
-            path: '/',
-            component: () => import('../pages/post/index'),
-            name: 'posts',
-            meta: {title: 'Post', icon: 'main', affix: true}
-        },
-            {
-                path: '/form',
-                component: () => import('../pages/post/form'),
-                name: 'form',
-                meta: {title: 'Form', icon: 'main', affix: true}
-            }
-        ]
+        component: Layout,
+        redirect: "/posts/list",
+        children: [
+            ...postRoutes,
+        ],
+    },
+    {
+        path: "/:catchAll(.*)",
+        name: "NotFound",
+        component: loadPage("PageNotFound"),
     }
 ]
 
 const router = new Router({
-    scrollBehavior: () => ({y: 0}),
-    linkExactActiveClass: "active",
+    scrollBehavior: () => ({ y: 0 }),
+    linkActiveClass: "active",
+    mode: 'history',
     routes: constantRouterMap
 })
 
